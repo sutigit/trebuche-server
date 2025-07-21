@@ -16,6 +16,7 @@
   "license": "ISC",
   "description": "This repository is a template for setting up a Node.js server with TypeScript and Express, based on the LogRocket article. It provides a clean and efficient development environment to build scalable and type-safe backend applications.",
   "dependencies": {
+    "@supabase/supabase-js": "^2.52.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
