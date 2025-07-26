@@ -53,7 +53,7 @@ export type Database = {
         }
         Relationships: []
       }
-      "default bots": {
+      default_bots: {
         Row: {
           color: string | null
           created_at: string
@@ -83,7 +83,7 @@ export type Database = {
         }
         Relationships: []
       }
-      "private bots": {
+      private_bots: {
         Row: {
           color: string | null
           created_at: string
