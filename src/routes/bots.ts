@@ -4,7 +4,7 @@ import db from "../db/index";
 const router = express.Router();
 
 router.get("/default", async (req: Request, res: Response) => {
-  const { data, error } = await db.from("default bots").select();
+  const { data, error } = await db.from("default_bots").select();
   if (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -14,7 +14,7 @@ router.get("/default", async (req: Request, res: Response) => {
 router.get("/user/:uid", async (req: Request, res: Response) => {
   const user_id = req.params.uid;
   const { data, error } = await db
-    .from("private bots")
+    .from("private_bots")
     .select()
     .eq("user_id", user_id);
   if (error) {
