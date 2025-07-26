@@ -1,5 +1,5 @@
 {
-  "name": "ts-node-express-template",
+  "name": "trebuche-server",
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
@@ -8,13 +8,14 @@
     "dev": "nodemon -r tsconfig-paths/register src/index.ts"
   },
   "keywords": [
+    "trebuche",
     "node",
     "typescript",
     "express"
   ],
   "author": "sutigit",
   "license": "ISC",
-  "description": "This repository is a template for setting up a Node.js server with TypeScript and Express, based on the LogRocket article. It provides a clean and efficient development environment to build scalable and type-safe backend applications.",
+  "description": "Trebuche server",
   "dependencies": {
     "@supabase/supabase-js": "^2.52.0",
     "cors": "^2.8.5",
