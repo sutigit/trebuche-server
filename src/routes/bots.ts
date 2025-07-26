@@ -1,14 +1,26 @@
 import express, { Request, Response } from "express";
+import db from "../db/index";
 
 const router = express.Router();
 
-router.get("/", (req: Request, res: Response) => {
-  res.json({ message: "List of bots" });
+router.get("/default", async (req: Request, res: Response) => {
+  const { data, error } = await db.from("default bots").select();
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  return res.status(200).json({ data });
 });
 
-router.post("/", (req: Request, res: Response) => {
-  const { name } = req.body;
-  res.json({ message: `Bot ${name} created` });
+router.get("/user/:uid", async (req: Request, res: Response) => {
+  const user_id = req.params.uid;
+  const { data, error } = await db
+    .from("private bots")
+    .select()
+    .eq("user_id", user_id);
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  return res.status(200).json({ data });
 });
 
 export default router;

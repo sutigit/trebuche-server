@@ -12,66 +12,8 @@ export type Database = {
   __InternalSupabase: {
     PostgrestVersion: "12.2.3 (519615d)"
   }
-  graphql_public: {
-    Tables: {
-      [_ in never]: never
-    }
-    Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      graphql: {
-        Args: {
-          operationName?: string
-          query?: string
-          variables?: Json
-          extensions?: Json
-        }
-        Returns: Json
-      }
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
-  }
   public: {
     Tables: {
-      bots: {
-        Row: {
-          color: string | null
-          created_at: string
-          description: string | null
-          id: number
-          instructions: string | null
-          name: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          color?: string | null
-          created_at?: string
-          description?: string | null
-          id?: number
-          instructions?: string | null
-          name: string
-          updated_at?: string
-          user_id?: string
-        }
-        Update: {
-          color?: string | null
-          created_at?: string
-          description?: string | null
-          id?: number
-          instructions?: string | null
-          name?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       conversations: {
         Row: {
           bots: number[]
@@ -107,6 +49,69 @@ export type Database = {
           name?: string | null
           summary?: string | null
           updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      "default bots": {
+        Row: {
+          color: string | null
+          created_at: string
+          description: string | null
+          id: number
+          instructions: string | null
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          id?: number
+          instructions?: string | null
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          id?: number
+          instructions?: string | null
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      "private bots": {
+        Row: {
+          color: string | null
+          created_at: string
+          description: string | null
+          id: number
+          instructions: string | null
+          name: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          id?: number
+          instructions?: string | null
+          name: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          id?: number
+          instructions?: string | null
+          name?: string
+          updated_at?: string
           user_id?: string | null
         }
         Relationships: []
@@ -245,9 +250,6 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
-  graphql_public: {
-    Enums: {},
-  },
   public: {
     Enums: {},
   },
