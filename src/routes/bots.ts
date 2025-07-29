@@ -11,8 +11,21 @@ router.get("/default", async (req: Request, res: Response) => {
   return res.status(200).json({ data });
 });
 
-router.get("/user/:uid", async (req: Request, res: Response) => {
-  const user_id = req.params.uid;
+router.get("/default/:id", async (req: Request, res: Response) => {
+  const bot_id = Number(req.params.id);
+  const { data, error } = await db
+    .from("default_bots")
+    .select()
+    .eq("id", bot_id)
+    .single();
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  return res.status(200).json({ data });
+});
+
+router.get("/user/:id", async (req: Request, res: Response) => {
+  const user_id = req.params.id;
   const { data, error } = await db
     .from("private_bots")
     .select()
