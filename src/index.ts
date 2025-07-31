@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 import auth from "./routes/auth";
 import openai from "./routes/openai";
-import users from "./routes/users";
+import profiles from "./routes/profiles";
 import bots from "./routes/bots";
 import conversations from "./routes/conversations";
 
@@ -18,10 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", auth);
-app.use("/openai", openai);
-app.use("/users", users);
+app.use("/profiles", profiles);
 app.use("/bots", bots);
 app.use("/conversations", conversations);
+app.use("/openai", openai);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

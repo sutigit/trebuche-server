@@ -17,84 +17,44 @@ export type Database = {
       bots: {
         Row: {
           archived: boolean
+          author_id: string | null
           color: string
           created_at: string
           description: string
+          hidden: boolean
           id: string
+          is_default: boolean
           name: string
           prompt: string
           updated_at: string
         }
         Insert: {
           archived?: boolean
+          author_id?: string | null
           color: string
           created_at?: string
           description: string
+          hidden?: boolean
           id?: string
+          is_default: boolean
           name: string
           prompt: string
           updated_at?: string
         }
         Update: {
           archived?: boolean
+          author_id?: string | null
           color?: string
           created_at?: string
           description?: string
+          hidden?: boolean
           id?: string
+          is_default?: boolean
           name?: string
           prompt?: string
           updated_at?: string
         }
         Relationships: []
-      }
-      "bots.default": {
-        Row: {
-          bot_id: string
-          id: number
-        }
-        Insert: {
-          bot_id: string
-          id?: number
-        }
-        Update: {
-          bot_id?: string
-          id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "bots.default_bot_id_fkey"
-            columns: ["bot_id"]
-            isOneToOne: false
-            referencedRelation: "bots"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      "bots.private": {
-        Row: {
-          bot_id: string
-          id: number
-          user_id: string
-        }
-        Insert: {
-          bot_id: string
-          id?: number
-          user_id: string
-        }
-        Update: {
-          bot_id?: string
-          id?: number
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "bots.private_bot_id_fkey"
-            columns: ["bot_id"]
-            isOneToOne: false
-            referencedRelation: "bots"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       conversations: {
         Row: {
@@ -102,6 +62,7 @@ export type Database = {
           created_at: string
           description: string
           id: number
+          published: boolean
           title: string
           updated_at: string
         }
@@ -110,6 +71,7 @@ export type Database = {
           created_at?: string
           description: string
           id?: number
+          published?: boolean
           title: string
           updated_at?: string
         }
@@ -118,6 +80,7 @@ export type Database = {
           created_at?: string
           description?: string
           id?: number
+          published?: boolean
           title?: string
           updated_at?: string
         }
@@ -125,16 +88,19 @@ export type Database = {
       }
       "conversations.members.bots": {
         Row: {
+          author_id: string
           bot_id: string
           conversation_id: number
           id: number
         }
         Insert: {
+          author_id: string
           bot_id: string
           conversation_id: number
           id?: number
         }
         Update: {
+          author_id?: string
           bot_id?: string
           conversation_id?: number
           id?: number
@@ -158,6 +124,7 @@ export type Database = {
       }
       "conversations.messages.bots": {
         Row: {
+          author_id: string
           bot_id: string
           conversation_id: number
           created_at: string
@@ -165,6 +132,7 @@ export type Database = {
           message: string | null
         }
         Insert: {
+          author_id: string
           bot_id: string
           conversation_id: number
           created_at?: string
@@ -172,6 +140,7 @@ export type Database = {
           message?: string | null
         }
         Update: {
+          author_id?: string
           bot_id?: string
           conversation_id?: number
           created_at?: string
@@ -197,25 +166,25 @@ export type Database = {
       }
       "conversations.messages.users": {
         Row: {
+          author_id: string
           conversation_id: number
           created_at: string
           id: number
           message: string | null
-          user_id: string
         }
         Insert: {
+          author_id: string
           conversation_id: number
           created_at?: string
           id?: number
           message?: string | null
-          user_id: string
         }
         Update: {
+          author_id?: string
           conversation_id?: number
           created_at?: string
           id?: number
           message?: string | null
-          user_id?: string
         }
         Relationships: [
           {

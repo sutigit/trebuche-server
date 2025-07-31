@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import db from "../db/index";
+import db from "@/lib/supabase";
 import openai from "../lib/openai";
 import { EmbeddingModel } from "openai/resources/embeddings";
 
@@ -26,11 +26,11 @@ router.post("/basic", async (req: Request, res: Response) => {
 });
 
 router.post("/bot/:id", async (req: Request, res: Response) => {
-  const bot_id = Number(req.params.id);
+  const bot_id = req.params.id;
   const content = req.body.content;
 
   const { data, error } = await db
-    .from("default_bots")
+    .from("bots")
     .select()
     .eq("id", bot_id)
     .single();
@@ -42,7 +42,7 @@ router.post("/bot/:id", async (req: Request, res: Response) => {
   let output = "";
   try {
     const response = await openai.responses.create({
-      instructions: data.instructions,
+      instructions: data.prompt,
       model: process.env.OPENAI_MODEL,
       input: content,
     });
