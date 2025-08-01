@@ -3,13 +3,35 @@ import db from "@/lib/supabase";
 
 const router = express.Router();
 
-router.get("/", (req: Request, res: Response) => {
-  res.json({ message: "List of users" });
+router.get("/:user_id", async (req: Request, res: Response) => {
+  const { user_id } = req.params;
+  const { data, error } = await db
+    .from("profiles")
+    .select()
+    .eq("user_id", user_id)
+    .single();
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  return res.json({ data });
 });
 
-router.post("/", (req: Request, res: Response) => {
-  const { name } = req.body;
-  res.json({ message: `User ${name} created` });
+router.patch("/:user_id", async (req: Request, res: Response) => {
+  const { user_id } = req.params;
+  const { username } = req.body;
+  const { data, error } = await db
+    .from("profiles")
+    .update({ username })
+    .eq("user_id", user_id)
+    .select();
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  return res.json({ data });
 });
 
 export default router;
