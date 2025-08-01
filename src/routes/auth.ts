@@ -3,9 +3,9 @@ import db from "@/lib/supabase";
 
 const router = express.Router();
 
-router.post("/login", async (req: Request, res: Response) => {
-  const email = req.body.email;
-  const password = req.body.password;
+router.post("/signin", async (req: Request, res: Response) => {
+  const { email } = req.body;
+  const { password } = req.body;
 
   let { data, error } = await db.auth.signInWithPassword({
     email,
@@ -18,7 +18,7 @@ router.post("/login", async (req: Request, res: Response) => {
   return res.status(200).json({ data });
 });
 
-router.post("/logout", async (req: Request, res: Response) => {
+router.post("/signout", async (req: Request, res: Response) => {
   let { error } = await db.auth.signOut();
 
   if (error) {
