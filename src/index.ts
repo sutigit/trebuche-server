@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import openai from "./routes/openai";
+import { auth } from "./middleware/auth";
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(auth);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
