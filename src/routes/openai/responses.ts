@@ -5,7 +5,7 @@ import openai from "@/lib/openai";
 dotenv.config();
 const router = express.Router();
 
-router.post("/responses", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   const { instructions, content } = req.body;
 
   try {
